@@ -8,6 +8,25 @@ In this example the MSV has three possible values
 - 2 = On
 - 3 = Blink
 
+## Supported BIBBs
+
+The CAS BACnet stack supports many other BIBBs, this minumial example only supports the following:
+
+- DS-RP-B: Data Sharing - ReadProperty-B
+- DS-RPM-B: Data Sharing - ReadPropertyMultiple-B
+- DS-WP-B: Data Sharing - WriteProperty-B
+- DM-DDB-B Device and Network Management - Dynamic Device Binding-B (Who-Is)
+- DM-DOB-B Device and Network Management - Dynamic Object Binding-B (Who-Has)
+
+## BACnet objects supported
+
+The CAS BACnet stack supports many other object types this minumial example only supports the following:
+
+- Device (8)
+- Multi-state Value (19)
+
+## Example in the CAS BACnet Explorer
+
 ![Preview of the CAS BACnet Explorer](/docs/CASBACnetExplorer.png?raw=true "Preview of the CAS BACnet Explorer")
 
 ## Example output

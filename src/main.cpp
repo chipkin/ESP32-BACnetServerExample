@@ -35,8 +35,8 @@ const uint32_t APPLICATION_VERSION_PATCH = 1;
 // Application settings
 // -----------------------------
 // ToDo: Update these prameters with your local wifi SSID and password.
-const char* APPLICATION_WIFI_SSID = "Chipkin";
-const char* APPLICATION_WIFI_PASSWORD = "revenues vital config four";
+const char* APPLICATION_WIFI_SSID = "---YOUR SSID---";
+const char* APPLICATION_WIFI_PASSWORD = "--YOUR PASSWORD---";
 
 const uint32_t APPLICATION_BACNET_DEVICE_INSTANCE = 389001;
 const uint32_t APPLICATION_BACNET_OBJECT_MSV_LED_INSTANCE = 1;
@@ -124,6 +124,8 @@ void setup()
     Serial.println(APPLICATION_WIFI_SSID);
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
+    Serial.print("Subnet mask: ");
+    Serial.println(WiFi.subnetMask());
 
     // Set up UDP port.
     // Connect the UDP resource to the BACnet Port
@@ -175,8 +177,10 @@ void setup()
         return;
     }
     Serial.printf("FYI: Enabled WriteProperty for Device %u\n", APPLICATION_BACNET_DEVICE_INSTANCE);
+
+    // Read Property Multiple service is a nice to have, not required for a BACnet server to work but it does make polling the device easier.
     if (!fpSetServiceEnabled(APPLICATION_BACNET_DEVICE_INSTANCE, BACNET_SERVICE_READ_PROPERTY_MULTIPLE, true)) {
-        Serial.printf("Error: Failed to enabled the WriteProperty service=[%u] for Device %u\n", BACNET_SERVICE_READ_PROPERTY_MULTIPLE, APPLICATION_BACNET_DEVICE_INSTANCE);
+        Serial.printf("Error: Failed to enabled the Read Property Multiple service=[%u] for Device %u\n", BACNET_SERVICE_READ_PROPERTY_MULTIPLE, APPLICATION_BACNET_DEVICE_INSTANCE);
         return;
     }
     Serial.printf("FYI: Enabled Read Property Multiple for Device %u\n", BACNET_SERVICE_READ_PROPERTY_MULTIPLE);
