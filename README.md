@@ -2,21 +2,29 @@
 
 In this project we are using the [CAS BACnet stack](https://www.bacnetstack.com/) to generate a simple BACnet server with one Multi-state-value (MSV) object. The MSV shows the current mode of the built-in LED. A BACnet client (such as the [CAS BACnet Explorer](https://store.chipkin.com/products/tools/cas-bacnet-explorer)) can be used to write to this MSV to change the mode.
 
-In this example the MSV has three possible values
+The MSV allows for three possaible values to be written.
 
-- 1 = Off
-- 2 = On
-- 3 = Blink
+- 1 = **Off**
+- 2 = **On**
+- 3 = **Blink** - Blinks the LED on and off at a rate of 500 ms.
+
+## Quick start
+
+1. Download and install [Platform/io](https://platformio.org/) for [Visual studios code](https://code.visualstudio.com/)
+2. Add the ESP32 board to Platform/io
+3. Add the [CAS BACnet stack](https://www.bacnetstack.com/) libary to the */lib/* folder.
+4. Use Platform/io to *Build* the project.
+5. Use Platform/io to *Upload and Monitor*.
 
 ## Supported BIBBs
 
 The CAS BACnet stack supports many other BIBBs, this minumial example only supports the following:
 
-- DS-RP-B: Data Sharing - ReadProperty-B
-- DS-RPM-B: Data Sharing - ReadPropertyMultiple-B
-- DS-WP-B: Data Sharing - WriteProperty-B
-- DM-DDB-B Device and Network Management - Dynamic Device Binding-B (Who-Is)
-- DM-DOB-B Device and Network Management - Dynamic Object Binding-B (Who-Has)
+- **DS-RP-B**: Data Sharing - ReadProperty-B
+- **DS-RPM-B**: Data Sharing - ReadPropertyMultiple-B
+- **DS-WP-B**: Data Sharing - WriteProperty-B
+- **DM-DDB-B**: Device and Network Management - Dynamic Device Binding-B (Who-Is)
+- **DM-DOB-B**: Device and Network Management - Dynamic Object Binding-B (Who-Has)
 
 ## BACnet objects supported
 
@@ -24,6 +32,36 @@ The CAS BACnet stack supports many other object types this minumial example only
 
 - Device (8)
 - Multi-state Value (19)
+
+## Device Tree
+
+Below is the device tree exported from the CAS BACnet Explorer.
+
+```txt
+device: 389001  (ESP32 BACnet Example Server)
+    object_identifier: device (389001)
+    object_type: device
+    vendor_identifier: Chipkin Automation Systems (0x185)
+    application_software_version: v1
+    firmware_revision: 3.8.1.0
+    model_name: CAS BACnet Stack
+    object_name: ESP32 BACnet Example Server
+    protocol_services_supported: readProperty (1), readPropertyMultiple (1), writeProperty (1), who_Has (1), who_Is (1), 
+    protocol_version: 1
+    vendor_name: Chipkin Automation Systems
+    protocol_revision: 14
+    multi_state_value: 1  (LED State)
+        object_identifier: multi_state_value (1)
+        object_type: multi_state_value (0x13)
+        event_state: normal (0x0)
+        number_of_states: 3
+        object_name: LED State
+        out_of_service: False
+        present_value: 3
+        status_flags: in_alarm (0), fault (0), overridden (0), out_of_service (0), 
+        state_text: Off, On, Blink
+
+```
 
 ## Example in the CAS BACnet Explorer
 
