@@ -1,6 +1,6 @@
 # ESP32-BACnetServerExample
 
-In this project we are using the CAS BACnet stack (https://www.bacnetstack.com/) to generate a simple BACnet server with one Multi-state-value (MSV) object. The MSV shows the current mode of the built-in LED. A BACnet client (such as the [CAS BACnet Explorer](https://store.chipkin.com/products/tools/cas-bacnet-explorer)) can be used to write to this MSV to change the mode.
+In this project we are using the [CAS BACnet stack](https://www.bacnetstack.com/) to generate a simple BACnet server with one Multi-state-value (MSV) object. The MSV shows the current mode of the built-in LED. A BACnet client (such as the [CAS BACnet Explorer](https://store.chipkin.com/products/tools/cas-bacnet-explorer)) can be used to write to this MSV to change the mode.
 
 In this example the MSV has three possible values
 
@@ -50,3 +50,9 @@ FYI: Sent message with 98 bytes to 192.168.1.77:47808
 ## Tested hardware
 
 - [Adafruit HUZZAH32 – ESP32 Feather Board](https://www.adafruit.com/product/3405)
+
+## FAQ
+
+### Can't build the project. *CASBACnetStackAdapter.h: No such file or directory*
+
+Please see this issue [CASBACnetStackAdapter.h: No such file or directory](https://github.com/chipkin/ESP32-BACnetServerExample/issues/1)
