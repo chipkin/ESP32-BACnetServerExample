@@ -1,6 +1,6 @@
 # ESP32-BACnetServerExample
 
-In this project we are using the CAS BACnet stack (https://www.bacnetstack.com/) to generate a simple BACnet server with one Multi-state-value (MSV) object. The MSV shows the current mode of the build in LED. A BACnet client (such as the CAS BACnet Explorer) can be used to write to this MSV to change the mode.
+In this project we are using the CAS BACnet stack (https://www.bacnetstack.com/) to generate a simple BACnet server with one Multi-state-value (MSV) object. The MSV shows the current mode of the built-in LED. A BACnet client (such as the [CAS BACnet Explorer](https://store.chipkin.com/products/tools/cas-bacnet-explorer)) can be used to write to this MSV to change the mode.
 
 In this example the MSV has three possible values
 
@@ -8,7 +8,7 @@ In this example the MSV has three possible values
 - 2 = On
 - 3 = Blink
 
-![Preview of the CAS BACnet Explorer](/docs/CASBACnetExplorer?raw=true "Preview of the CAS BACnet Explorer")
+![Preview of the CAS BACnet Explorer](/docs/CASBACnetExplorer.png?raw=true "Preview of the CAS BACnet Explorer")
 
 ## Example output
 
