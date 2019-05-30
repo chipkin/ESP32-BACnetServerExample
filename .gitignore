@@ -10,3 +10,5 @@ lib/casbacnetstack/
 \.vscode/settings\.json
 
 \.vscode/ipch/
+
+lib/cas-bacnet-stack/
