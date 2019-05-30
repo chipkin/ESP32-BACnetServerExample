@@ -26,7 +26,8 @@ ESP32-BACnetServerExample:
     - ls 
     - ls cas-bacnet-stack/
     - ls cas-bacnet-stack/source/
-
+    - ls cas-bacnet-stack/submodules/cas-common/source
+    
     # Move the files 
     # The way that platforum.io works is that it will compile every file in the lib folder.
     # and the entire cas-bacnet-stack has many dependencies, including unit testing frameworks. 
@@ -35,6 +36,7 @@ ESP32-BACnetServerExample:
     - mkdir lib/cas-bacnet-stack/
     - cp cas-bacnet-stack/source/* lib/cas-bacnet-stack/    
     - cp cas-bacnet-stack/adapters/cpp/* lib/cas-bacnet-stack/
+    - cp cas-bacnet-stack/submodules/cas-common/source/ChipkinConvert.* lib/cas-bacnet-stack/
 
     # Debug 
     - ls lib/cas-bacnet-stack/
