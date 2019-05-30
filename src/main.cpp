@@ -25,6 +25,7 @@
 // More information about the CAS BACnet stack can be found here https://www.bacnetstack.com/
 // https://github.com/chipkin/ESP32-BACnetServerExample/issues/1
 #include <CASBACnetStackAdapter.h>
+#include <CIBuildSettings.h>
 
 // Application Version
 // -----------------------------
@@ -106,6 +107,8 @@ void setup()
     Serial.print(APPLICATION_VERSION_MINOR);
     Serial.print(".");
     Serial.println(APPLICATION_VERSION_PATCH);
+    Serial.print(".");
+    Serial.println(CI_PIPELINE_IID);
     uint64_t chipid = ESP.getEfuseMac(); // The chip ID is essentially its MAC address(length: 6 bytes).
     Serial.printf("FYI: ESP32 Chip ID: %04X, (%08X)\n", (uint16_t)(chipid >> 32), (uint32_t)chipid);
 
