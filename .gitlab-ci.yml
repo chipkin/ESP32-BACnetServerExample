@@ -36,7 +36,7 @@ ESP32-BACnetServerExample:
     - mkdir lib/cas-bacnet-stack/
     - cp cas-bacnet-stack/source/* lib/cas-bacnet-stack/    
     - cp cas-bacnet-stack/adapters/cpp/* lib/cas-bacnet-stack/
-    - cp cas-bacnet-stack/submodules/cas-common/source/ChipkinConvert.* lib/cas-bacnet-stack/
+    - cp cas-bacnet-stack/submodules/cas-common/source/* lib/cas-bacnet-stack/
 
     # Debug 
     - ls lib/cas-bacnet-stack/
