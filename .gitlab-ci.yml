@@ -1,0 +1,48 @@
+# Copied from https://docs.platformio.org/en/latest/ci/gitlab.html
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - build
+
+cache:
+  key: ${CI_JOB_NAME}
+
+ESP32-BACnetServerExample:
+  image: python:2.7
+  stage: build
+  tags: 
+    - docker 
+  before_script:
+    # Update the build number 
+    - echo -e "#define CI_PIPELINE_IID $CI_PIPELINE_IID\n" >src/CIBuildSettings.h 
+    - "cat src/CIBuildSettings.h"
+
+    # Install platformio. (Requires Python 2.7, see image above)
+    - "pip install -U platformio"    
+  script:
+    # Move the files 
+    # The way that platforum.io works is that it will compile every file in the lib folder.
+    # and the entire cas-bacnet-stack has many dependencies, including unit testing frameworks. 
+    # so we can't just put the entire cas-bacnet-stack folder into the lib folder. We need to 
+    # move the files that are needed into lib folder for the build. 
+    - mkdir lib/cas-bacnet-stack/
+    - cp cas-bacnet-stack/source/* lib/cas-bacnet-stack/    
+    - cp cas-bacnet-stack/adapters/cpp/* lib/cas-bacnet-stack/
+    - cp cas-bacnet-stack/submodules/cas-common/source/* lib/cas-bacnet-stack/
+
+    # Build 
+    # More info about platformio https://docs.platformio.org/en/latest/userguide/cmd_ci.html 
+    - "platformio ci --lib='lib/cas-bacnet-stack' --board=featheresp32 src"
+
+# After the project builds I could not find the .pioenvs in the docker image. 
+# this folder does exist on my local computer during testing just not in the 
+# docker image. The artifacts are not required because this is just to ensure 
+# that changes can be built without error. There is no unit tests, or production 
+# tests happening on this binary. 
+# Still strange that I could not get the binary. 
+# 
+#  artifacts:
+#    paths:
+#      - .pioenvs/featheresp32/firmware*.*
