@@ -34,7 +34,12 @@ ESP32-BACnetServerExample:
 
     # Build 
     # More info about platformio https://docs.platformio.org/en/latest/userguide/cmd_ci.html 
-    - "platformio ci --lib='lib/cas-bacnet-stack' --board=featheresp32 src"
+    - "platformio ci --lib='lib/cas-bacnet-stack' --board=featheresp32 src | tee output.txt"
+
+    # Memory usage metrics
+    - echo "CI_PIPELINE_IID $CI_PIPELINE_IID"
+    - grep "^DATA" output.txt >> metrics.txt
+    - grep "^PROGRAM" output.txt >> metrics.txt
 
 # After the project builds I could not find the .pioenvs in the docker image. 
 # this folder does exist on my local computer during testing just not in the 
@@ -46,3 +51,8 @@ ESP32-BACnetServerExample:
 #  artifacts:
 #    paths:
 #      - .pioenvs/featheresp32/firmware*.*
+  artifacts:
+    paths:
+      - metrics.txt
+    reports:
+      metrics: metrics.txt
