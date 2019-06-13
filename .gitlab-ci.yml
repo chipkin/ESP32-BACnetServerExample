@@ -36,7 +36,7 @@ ESP32-BACnetServerExample:
     # More info about platformio https://docs.platformio.org/en/latest/userguide/cmd_ci.html 
     - "platformio ci --lib='lib/cas-bacnet-stack' --board=featheresp32 src | tee output.txt"
 
-    # Code metrics.txt
+    # Memory usage metrics
     - echo -n "Memory.DATA " > metrics.txt | grep -Po -m1 "(?<=DATA:)*[\d.]*%" output.txt >> metrics.txt
     - echo -n "Memory.PROGRAM " > metrics.txt | grep -Po -m1 "(?<=PROGRAM:)*[\d.]*%" output.txt >> metrics.txt
 
@@ -51,5 +51,7 @@ ESP32-BACnetServerExample:
 #    paths:
 #      - .pioenvs/featheresp32/firmware*.*
   artifacts:
+    paths:
+      - metrics.txt
     reports:
       metrics: metrics.txt
