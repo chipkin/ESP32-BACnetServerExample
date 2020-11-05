@@ -1,3 +1,0 @@
-[submodule "cas-bacnet-stack"]
-	path = cas-bacnet-stack
-	url = ../../chipkin/cas-bacnet-stack.git
