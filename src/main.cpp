@@ -31,7 +31,7 @@
 // -----------------------------
 const uint32_t APPLICATION_VERSION_MAJOR = 0;
 const uint32_t APPLICATION_VERSION_MINOR = 0;
-const uint32_t APPLICATION_VERSION_PATCH = 1;
+const uint32_t APPLICATION_VERSION_PATCH = 2;
 
 // Application settings
 // -----------------------------
@@ -279,10 +279,10 @@ bool GetBroadcastAddress(uint8_t* broadcastAddress, size_t maxbroadcastAddressSi
     IPAddress localIP = WiFi.localIP();
     IPAddress subnetMask = WiFi.subnetMask();
 
-    broadcastAddress[0] = (localIP[0] & subnetMask[0]) == 0 ? 255 : localIP[0];
-    broadcastAddress[1] = (localIP[1] & subnetMask[1]) == 0 ? 255 : localIP[1];
-    broadcastAddress[2] = (localIP[2] & subnetMask[2]) == 0 ? 255 : localIP[2];
-    broadcastAddress[3] = (localIP[3] & subnetMask[3]) == 0 ? 255 : localIP[3];
+    broadcastAddress[0] = localIP[0] | ~subnetMask[0];
+    broadcastAddress[1] = localIP[1] | ~subnetMask[1];
+    broadcastAddress[2] = localIP[2] | ~subnetMask[2];
+    broadcastAddress[3] = localIP[3] | ~subnetMask[3];
     return true;
 }
 
