@@ -5,10 +5,9 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 
-lib/casbacnetstack/
+lib/cas-bacnet-stack/
 
 \.vscode/settings\.json
 
 \.vscode/ipch/
 
-lib/cas-bacnet-stack/
