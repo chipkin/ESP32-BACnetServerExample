@@ -12,7 +12,37 @@ The MSV allows for three possaible values to be written.
 
 1. Download and install [Platform/io](https://platformio.org/) for [Visual studios code](https://code.visualstudio.com/)
 2. Add the ESP32 board to Platform/io
-3. Add the [CAS BACnet stack](https://www.bacnetstack.com/) libary to the */lib/* folder.
+3. Move the [CAS BACnet stack](https://www.bacnetstack.com/) source and adapter files to the */lib/src/* folder:
+```
+From:
+|--lib
+|  |
+|  |--cas-bacnet-stack
+|  |  |--adapters
+|  |  |  |--cpp
+|  |  |  |  |- *.cpp
+|  |  |  |  |- *.h
+|  |  |--source
+|  |  |  |- *.cpp
+|  |  |  |- *.h
+|  |  |--submodules
+|  |  |  |--cas-common
+|  |  |  |  |--source
+|  |  |  |  |  |- *.cpp
+|  |  |  |  |  |- *.c
+|--src
+|  |- main.c
+
+To:
+|--lib
+|  |
+|  |--cas-bacnet-stack
+|  |  |--src
+|  |  |  |- *.cpp
+|  |  |  |- *.h
+|--src
+|  |- main.c
+```
 4. Use Platform/io to *Build* the project.
 5. Use Platform/io to *Upload and Monitor*.
 
@@ -43,7 +73,7 @@ device: 389001  (ESP32 BACnet Example Server)
     object_type: device
     vendor_identifier: Chipkin Automation Systems (0x185)
     application_software_version: v1
-    firmware_revision: 3.8.1.0
+    firmware_revision: 3.25.0.0
     model_name: CAS BACnet Stack
     object_name: ESP32 BACnet Example Server
     protocol_services_supported: readProperty (1), readPropertyMultiple (1), writeProperty (1), who_Has (1), who_Is (1), 
@@ -79,7 +109,7 @@ FYI: Connected to XXXXXXXXXX
 FYI: IP address: 192.168.1.66
 FYI: Connecting UDP resource to port=[47808]
 FYI: Connected to UDP port.
-FYI: CAS BACnet Stack version: 3.8.1
+FYI: CAS BACnet Stack version: 3.25.0
 FYI: BACnet device created: Device instanse=389001
 FYI: Enabled WriteProperty for Device 389001
 FYI: Enabled Read Property Multiple for Device 14
